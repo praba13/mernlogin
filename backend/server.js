@@ -6,9 +6,8 @@ const dotenv = require('dotenv').config();
 const app = express();
 
 app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
 
-const PORT = process.env.PORT || 6000;
-connectDB();
 //app.get('/api/goals', (req, res) => {
 //res.send('Get Goals');
 //res.json({ message: 'Get Goals' });
@@ -18,6 +17,9 @@ connectDB();
 app.use('/api/goals', require('./routes/goalRoutes'));
 app.use(errorHandler);
 
-app.listen(PORT, () =>
-  console.log(`SERVER IS RUNNING ON PORT ${PORT} !!!`.magenta)
-);
+const PORT = process.env.PORT || 6000;
+
+app.listen(PORT, () => {
+  connectDB();
+  console.log(`SERVER IS RUNNING ON PORT ${PORT} !!!`.magenta);
+});
