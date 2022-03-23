@@ -5,6 +5,14 @@ const app = express();
 
 const PORT = process.env.PORT || 6000;
 
+//app.get('/api/goals', (req, res) => {
+//res.send('Get Goals');
+//res.json({ message: 'Get Goals' });
+//res.status(200).json({ message: 'Get Goals' });
+//});
+
+app.use('/api/goals', require('./routes/goalRoutes'));
+
 app.listen(PORT, () =>
-  console.log(`Server Running on PORT ${PORT}`.magenta.bold)
+  console.log(`SERVER IS RUNNING ON PORT ${PORT} !!!`.magenta)
 );
